@@ -22,4 +22,6 @@ public interface BeanFactory {
      * @return 对应的对象
      */
     Object getBean(String name, Object... args) throws BeansException;
+
+    <T> T getBean(String name, Class<T> requiredType) throws BeansException;
 }

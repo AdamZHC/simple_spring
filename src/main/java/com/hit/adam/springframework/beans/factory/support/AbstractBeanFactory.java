@@ -24,6 +24,11 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
         return doGetBean(beanName, args);
     }
 
+    @Override
+    public <T> T getBean(String name, Class<T> requiredType) throws BeansException {
+        return (T) getBean(name);
+    }
+
     /**
      * 同样的这里的获取方法本质上实现的就是从对应的单例注册表中获取对应的Bean对象
      * 但是这里就是通过聚合到一个方法里面实现了，就是对应的doGet方法
