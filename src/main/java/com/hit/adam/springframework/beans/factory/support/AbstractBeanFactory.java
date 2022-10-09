@@ -3,9 +3,18 @@ package com.hit.adam.springframework.beans.factory.support;
 import com.hit.adam.springframework.beans.BeansException;
 import com.hit.adam.springframework.beans.factory.BeanFactory;
 import com.hit.adam.springframework.beans.factory.config.BeanDefinition;
+import com.hit.adam.springframework.beans.factory.config.BeanPostProcessor;
+import com.hit.adam.springframework.beans.factory.config.ConfigurableBeanFactory;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @SuppressWarnings("All")
-public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry implements BeanFactory {
+public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry implements ConfigurableBeanFactory {
+
+    /** BeanPostProcessors to apply in createBean */
+    private final List<BeanPostProcessor> beanPostProcessors = new ArrayList<BeanPostProcessor>();
+
     @Override
     public Object getBean(String beanName) throws BeansException {
         /**
@@ -54,4 +63,18 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
      * 创建bean的方法本质上通过Bean的定义类来实现对应的功能
      */
     protected abstract Object createBean(String beanName, BeanDefinition beanDefinition, Object[] args) throws BeansException;
+
+    @Override
+    public void addBeanPostProcessor(BeanPostProcessor beanPostProcessor){
+        this.beanPostProcessors.remove(beanPostProcessor);
+        this.beanPostProcessors.add(beanPostProcessor);
+    }
+
+    /**
+     * Return the list of BeanPostProcessors that will get applied
+     * to beans created with this factory.
+     */
+    public List<BeanPostProcessor> getBeanPostProcessors() {
+        return this.beanPostProcessors;
+    }
 }

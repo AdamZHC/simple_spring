@@ -6,7 +6,7 @@ import com.hit.adam.springframework.core.io.ResourceLoader;
 /**
  * 对于一些方法还是要考虑实现getter and setter
  */
-public abstract class AbstractBeanDefinitionReader implements BeanDefinitionReader{
+public abstract class AbstractBeanDefinitionReader implements BeanDefinitionReader {
 
     private final BeanDefinitionRegistry registry;
 
