@@ -1,4 +1,4 @@
-package com.hit.adam.springframework.simple;
+package com.hit.adam.springframework.simple.ioc;
 
 /**
  * Bean的定义类

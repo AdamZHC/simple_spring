@@ -1,4 +1,4 @@
-package com.hit.adam.springframework.simple;
+package com.hit.adam.springframework.simple.ioc;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

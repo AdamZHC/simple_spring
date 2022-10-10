@@ -1,7 +1,7 @@
 package com.hit.adam.test;
 
-import com.hit.adam.springframework.simple.BeanDefinition;
-import com.hit.adam.springframework.simple.BeanFactory;
+import com.hit.adam.springframework.simple.ioc.BeanDefinition;
+import com.hit.adam.springframework.simple.ioc.BeanFactory;
 
 public class Test {
     public static void main(String[] args) {
