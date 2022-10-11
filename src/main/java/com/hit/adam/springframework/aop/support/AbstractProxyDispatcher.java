@@ -3,7 +3,6 @@ package com.hit.adam.springframework.aop.support;
 import com.hit.adam.springframework.aop.ProxyDispatcher;
 
 import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
 public abstract class AbstractProxyDispatcher implements ProxyDispatcher{

@@ -1,53 +1,33 @@
 package com.hit.adam.springframework.aop.support;
 
-import com.hit.adam.springframework.aop.config.AspectInterceptor;
-import com.hit.adam.springframework.aop.info.AspectInfoProvider;
+import com.hit.adam.springframework.aop.config.AspectPolisher;
+import com.hit.adam.springframework.aop.info.AspectInfo;
 
 import java.lang.reflect.Method;
+import java.util.Arrays;
 
-public class DefaultProxyDispatcher extends AbstractAspectWireProxyDispatcher{
+public class DefaultProxyDispatcher extends AbstractAspectWireProxyDispatcher {
     /**
-     * 提供切面的
+     * 提供切面的信息的
      */
-    private AspectInterceptor aspectInterceptor;
-//    /**
-//     * 提供信息
-//     */
-//    private AspectInfoProvider provider;
-    /**
-     * 提供对应的功能
-     */
-    private Object target;
+    private AspectInfo aspectInfo;
 
-    public void setTarget(Object target) {
-        this.target = target;
+    public void setAspectInfo(AspectInfo aspectInfo) {
+        this.aspectInfo = aspectInfo;
     }
-
-    public void setAspectInterceptor(AspectInterceptor aspectInterceptor) {
-        this.aspectInterceptor = aspectInterceptor;
-    }
-
-//    public void setProvider(AspectInfoProvider provider) {
-//        this.provider = provider;
-//    }
-//
-//
-//    public AspectInfoProvider getProvider() {
-//        return provider;
-//    }
-
-//    @Override
-//    protected Method[] getMethods() {
-//
-//    }
 
     @Override
-    protected AspectInterceptor getInterceptor() {
-        return this.aspectInterceptor;
+    protected AspectPolisher getAspectPolisher() {
+        return this.aspectInfo.getAspectPolisher();
+    }
+
+    @Override
+    protected Method[] getTargetMethods() {
+        return aspectInfo.getTargetMethods();
     }
 
     @Override
     protected Object getTargetObject() {
-        return this.target;
+        return this.aspectInfo.getTargetObject();
     }
 }

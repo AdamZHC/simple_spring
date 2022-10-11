@@ -4,7 +4,8 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StringAspectInfoProvider implements AspectInfoProvider{
+@Deprecated
+public class StringAspectInfoProvider {
     /**
      * 待解析的字串
      */
@@ -12,7 +13,7 @@ public class StringAspectInfoProvider implements AspectInfoProvider{
     /**
      * 目的类对象和目的方法
      */
-    private Class targetClass;
+    private Object targetObject;
 
     private Method[] targetMethods;
     /**
@@ -32,27 +33,16 @@ public class StringAspectInfoProvider implements AspectInfoProvider{
     public void parse() {
         String className = getMatcher().substring(0, 1);
         try {
-            this.targetClass = Class.forName("className");
             List<Method> methods = new ArrayList<>();
-            for(Method method : this.targetClass.getDeclaredMethods()) {
+            for(Method method : this.targetObject.getClass().getDeclaredMethods()) {
                 if(method.getName().equals(getMatcher().substring(1,2))) {
                     methods.add(method);
                 }
             }
             //匿名方法
             this.targetMethods = methods.toArray(new Method[0]);
-        } catch (ClassNotFoundException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public Class getTargetClass() {
-        return this.targetClass;
-    }
-
-    @Override
-    public Method[] getTargetMethods() {
-        return this.targetMethods;
     }
 }
