@@ -1,7 +1,8 @@
-package com.hit.adam.test.aop;
+package com.hit.adam.test.aop.jdk;
 
 import com.hit.adam.springframework.aop.info.AnnotationAspectInfo;
-import com.hit.adam.springframework.aop.support.DefaultProxyDispatcher;
+import com.hit.adam.springframework.aop.support.cglib.DefaultCglibProxyDispatcher;
+import com.hit.adam.springframework.aop.support.jdk.DefaultJdkProxyDispatcher;
 
 public class AopTest {
     public static void main(String[] args) {
@@ -10,9 +11,9 @@ public class AopTest {
          */
         AnnotationAspectInfo aspectInfo = new AnnotationAspectInfo();
         aspectInfo.setTargetObject(new Tiger());
-        aspectInfo.setAspectPolisher(new TigerProxy());
+        aspectInfo.setMethodAdviser(new TigerProxy());
 
-        DefaultProxyDispatcher proxyDispatcher = new DefaultProxyDispatcher();
+        DefaultCglibProxyDispatcher proxyDispatcher = new DefaultCglibProxyDispatcher();
         proxyDispatcher.setAspectInfo(aspectInfo);
         Animal proxyInstance = (Animal) proxyDispatcher.getProxyInstance();
         proxyInstance.feed();

@@ -1,10 +1,10 @@
-package com.hit.adam.test.aop;
+package com.hit.adam.test.aop.jdk;
 
-import com.hit.adam.springframework.aop.config.Aspect;
+import com.hit.adam.springframework.aop.config.Pointcut;
 
 public class Tiger implements Animal{
     @Override
-    @Aspect
+    @Pointcut
     public void feed() {
         System.out.println("Tiger Feed!!!");
     }

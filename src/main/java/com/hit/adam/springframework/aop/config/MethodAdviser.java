@@ -8,7 +8,7 @@ import java.util.Map;
  * 这样的设计可以方便实现两边的环绕传参
  * 然后就可以把两边的逻辑连接起来
  */
-public interface AspectPolisher {
+public interface MethodAdviser {
 
     /**
      * 在对应的方法前执行

@@ -1,11 +1,12 @@
-package com.hit.adam.springframework.aop.support;
+package com.hit.adam.springframework.aop.support.jdk;
 
+import com.hit.adam.springframework.aop.CommonProxyDispatcher;
 import com.hit.adam.springframework.aop.ProxyDispatcher;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
 
-public abstract class AbstractProxyDispatcher implements ProxyDispatcher{
+public abstract class AbstractJdkProxyDispatcher implements ProxyDispatcher, CommonProxyDispatcher {
 
     @Override
     public Object getProxyInstance() {
@@ -22,5 +23,4 @@ public abstract class AbstractProxyDispatcher implements ProxyDispatcher{
     //这就是关键完成的地方
     protected abstract InvocationHandler getInvocationHandler();
 
-    protected abstract Object getTargetObject();
 }

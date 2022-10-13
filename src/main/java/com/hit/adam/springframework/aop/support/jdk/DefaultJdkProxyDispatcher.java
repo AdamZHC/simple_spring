@@ -1,12 +1,11 @@
-package com.hit.adam.springframework.aop.support;
+package com.hit.adam.springframework.aop.support.jdk;
 
-import com.hit.adam.springframework.aop.config.AspectPolisher;
+import com.hit.adam.springframework.aop.config.MethodAdviser;
 import com.hit.adam.springframework.aop.info.AspectInfo;
 
 import java.lang.reflect.Method;
-import java.util.Arrays;
 
-public class DefaultProxyDispatcher extends AbstractAspectWireProxyDispatcher {
+public class DefaultJdkProxyDispatcher extends AbstractJdkAspectWireProxyDispatcher {
     /**
      * 提供切面的信息的
      */
@@ -17,17 +16,17 @@ public class DefaultProxyDispatcher extends AbstractAspectWireProxyDispatcher {
     }
 
     @Override
-    protected AspectPolisher getAspectPolisher() {
-        return this.aspectInfo.getAspectPolisher();
+    public MethodAdviser getMethodAdviser() {
+        return this.aspectInfo.getMethodAdviser();
     }
 
     @Override
-    protected Method[] getTargetMethods() {
+    public Method[] getTargetMethods() {
         return aspectInfo.getTargetMethods();
     }
 
     @Override
-    protected Object getTargetObject() {
+    public Object getTargetObject() {
         return this.aspectInfo.getTargetObject();
     }
 }

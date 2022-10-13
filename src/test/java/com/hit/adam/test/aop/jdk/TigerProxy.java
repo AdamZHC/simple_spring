@@ -1,11 +1,11 @@
-package com.hit.adam.test.aop;
+package com.hit.adam.test.aop.jdk;
 
-import com.hit.adam.springframework.aop.config.AspectPolisher;
+import com.hit.adam.springframework.aop.config.MethodAdviser;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class TigerProxy implements AspectPolisher {
+public class TigerProxy implements MethodAdviser {
     @Override
     public Map<String, Object> doBefore(Object targetObject) {
         System.out.println("AspectPolisher开始代理");

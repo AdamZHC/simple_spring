@@ -1,7 +1,7 @@
 package com.hit.adam.springframework.aop.info;
 
-import com.hit.adam.springframework.aop.config.Aspect;
-import com.hit.adam.springframework.aop.config.AspectPolisher;
+import com.hit.adam.springframework.aop.config.Pointcut;
+import com.hit.adam.springframework.aop.config.MethodAdviser;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ public class AnnotationAspectInfo implements AspectInfo{
      * 不一定是所有定义的接口方法都要去执行对应的
      * 切面方法
      */
-    private AspectPolisher aspectPolisher;
+    private MethodAdviser methodAdviser;
 
     private Method[] methods;
 
@@ -30,8 +30,8 @@ public class AnnotationAspectInfo implements AspectInfo{
         this.targetObject = targetObject;
     }
 
-    public void setAspectPolisher(AspectPolisher aspectPolisher) {
-        this.aspectPolisher = aspectPolisher;
+    public void setMethodAdviser(MethodAdviser methodAdviser) {
+        this.methodAdviser = methodAdviser;
     }
 
     @Override
@@ -41,8 +41,8 @@ public class AnnotationAspectInfo implements AspectInfo{
     }
 
     @Override
-    public AspectPolisher getAspectPolisher() {
-        return this.aspectPolisher;
+    public MethodAdviser getMethodAdviser() {
+        return this.methodAdviser;
     }
 
     private void parseMethod() {
@@ -51,7 +51,7 @@ public class AnnotationAspectInfo implements AspectInfo{
         Class<?> clazz = targetObject.getClass();
         List<Method> methods = new ArrayList<>();
         for (Method declaredMethod : clazz.getDeclaredMethods()) {
-            if(declaredMethod.getAnnotation(Aspect.class) != null) {
+            if(declaredMethod.getAnnotation(Pointcut.class) != null) {
                 methods.add(declaredMethod);
             }
         }
